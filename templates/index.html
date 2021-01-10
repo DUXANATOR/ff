@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Auctions</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/mdb.min.css">
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <div id='index'>
+    
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand brand" href="#">Auctions</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav" id='onUpdate'>
+          <li class="nav-item">
+            <a class="nav-link" href="#main">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#sell_wind">Продать</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#all_auctions">Купить</a>
+          </li>
+          <li class="nav-item OnDelete">
+           <buttton class='btn btn-fake nav-link' onclick='uLogin()'>вход</buttton>
+          </li>    
+          <li class="nav-item OnDelete">
+           <buttton class='btn btn-fake nav-link' onclick='uReg()'>регистрация</buttton>
+          </li>        
+        </ul>
+      </div>  
+    </nav>
+  
+    <div class='row' id='main'>
+
+      <div class='col-lg-6 col-12 text-center pt-4 pb-4' id='to_buy'>
+        <h2>Я покупатель!</h2>
+        <h5>Учавствуйте в аукционах</h5>
+        <p>Учавствуйте в аукционах и выигрывайте</p>
+        <h3><buttton class='btn btn-opt' onclick='OpenAu()'>к аукционам</buttton></h3>
+      </div>
+
+      <div class='col-lg-6 col-12 text-center pt-4 pb-4' id='to_sell'>
+        <h2>Я продавец!</h2>
+        <h5>Продавайте и выигрывайте</h5>
+        <p>*Только после регистрации</p>
+        <h3><buttton class='btn btn-opt' onclick='openSe()'>продать</buttton></h3>
+      </div>
+
+    </div>
+
+    <div class='container-fluid' id='all_auctions'>
+      <div class='row text-center' id='dinamic_auctions'>
+       <div class='col-12' id='Auctions_button_page'>
+         <button class='btn btn-opt' onclick='showAuct()'>Аукционы</button>
+       </div>
+      </div>
+    </div>
+
+
+    <div id="LoginPage" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeOver()">×</a>
+      <div class="overlay-content">
+          <div class='row justify-content-center align-items-center'>
+            <div class='col-12 mb-5'>
+              <button class="ent-btn btn" onclick="SwitchMenu('loginWindow')">Войти</button>
+              <button class="reg-btn btn" onclick="SwitchMenu('regWindow')">Регистрация</button>
+            </div>
+            <div class='col-12 col-xl-4 user_enteres_blocks' id='loginWindow'>
+                <div id='warningLogMessage'></div>
+                <span>Имя пользователя</span>
+                <input class="form-control warLog" type="text" placeholder="login" id="login-input">
+                <span>Пароль</span>
+                <input class="form-control warLog" type="password" placeholder="password" id="password-input">
+                <button class="act-btn btn" onclick="log('','')">Войти</button>
+            </div>
+            <div class='col-12 col-xl-4 user_enteres_blocks' id='regWindow'>
+                <div id='warningRegMessage'></div>
+                <span>Имя пользователя</span>
+                <input class="form-control war" type="text" placeholder="login" id="login_reg">
+                <span>Пароль</span>
+                <input class="form-control war" type="password" placeholder="password" id="password_reg">
+                <span>ФИО</span>
+                <input class="form-control war" type="text" placeholder="ФИО" id="fio_reg">
+                <span>Дата рождения</span>
+                <input class="form-control war" type="date" id="birthday_reg">
+                <span>Номер телефона</span>
+                <input class="form-control war" type="number" placeholder="***********" id="tel_reg">
+                <span>Пол</span>
+                <select class="form-control" id="sex_reg">
+                  <option value="м">муж</option>
+                  <option value="ж">жен</option>
+                </select>
+                <button class="reg-btn btn" onclick="reg()">Зарегистрироваться</button>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div id="BuyLot" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeBuyLot()">×</a>
+      <div class="overlay-content" id='buywindow'>
+      </div>
+    </div>
+
+    <div id="PhotoOfLot" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closePhoto()">×</a>
+      <div class="overlay-content" id='lotph'>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/js/mdb.min.js"></script>
+  <script src="../static/script.js"></script>
+</body>
+</html>
